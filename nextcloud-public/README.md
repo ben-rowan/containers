@@ -8,19 +8,17 @@ You'll need to create the following `.env` file:
 
 ```bash
 NEXTCLOUD_HOST=
-NEXTCLOUD_PORT=
 
 MYSQL_PASSWORD=
 MYSQL_DATABASE=
 MYSQL_USER=
 
 LETSENCRYPT_EMAIL=
-DEFAULT_LETSENCRYPT_EMAIL=
 ```
 
 ## Run
 
-TODO: If you split out the Nginx proxy (which you should) you'll need to add here about running that first.
+Note: Before starting Nextcloud, you need to start an instance of nginx-proxy.
 
 ```bash
 docker compose up -d
