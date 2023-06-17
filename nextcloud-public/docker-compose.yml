@@ -18,6 +18,8 @@ services:
       - ${NEXTCLOUD_PORT}
     volumes:
       - nextcloud-data:/var/www/html
+    env_file:
+      - nextcloud.env
     environment:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -31,8 +33,6 @@ services:
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       # Prevent external connections to container.
       - NETWORK_ACCESS=internal
-    env_file:
-      - nextcloud.env
     depends_on:
       - nextcloud-db
       - nginx-proxy
@@ -44,6 +44,8 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
       - nextcloud-db:/var/lib/mysql
+    env_file:
+      - nextcloud.env
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
@@ -51,8 +53,6 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       # Prevent external connections to container.
       - NETWORK_ACCESS=internal
-    env_file:
-      - nextcloud.env
     restart: unless-stopped
 
   nginx-proxy:
@@ -74,10 +74,10 @@ services:
   acme-companion:
     image: nginxproxy/acme-companion
     container_name: nginx-proxy-acme
-    environment:
-      - DEFAULT_EMAIL=${DEFAULT_LETSENCRYPT_EMAIL}
     env_file:
       nginx-proxy.env
+    environment:
+      - DEFAULT_EMAIL=${DEFAULT_LETSENCRYPT_EMAIL}
     volumes_from:
       - nginx-proxy
     volumes:
