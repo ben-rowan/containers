@@ -1,7 +1,7 @@
 ---
 volumes:
-  nextcloud-data:
-  nextcloud-db:
+  data:
+  db:
 
 services:
   nextcloud-app:
@@ -11,7 +11,7 @@ services:
     expose:
       - 80
     volumes:
-      - nextcloud-data:/var/www/html
+      - data:/var/www/html
     environment:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -36,7 +36,7 @@ services:
     container_name: nextcloud-db
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
-      - nextcloud-db:/var/lib/mysql
+      - db:/var/lib/mysql
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
