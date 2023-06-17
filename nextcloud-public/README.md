@@ -2,9 +2,9 @@
 
 A Nextcloud container setup to run behind an Nginx proxy with LetsEncrypt certificate.
 
-## nextcloud.env
+## .env
 
-You'll need to create the following `nextcloud.env` file:
+You'll need to create the following `.env` file:
 
 ```bash
 NEXTCLOUD_HOST=
@@ -15,13 +15,6 @@ MYSQL_DATABASE=
 MYSQL_USER=
 
 LETSENCRYPT_EMAIL=
-```
-
-## nginx-proxy.env
-
-You'll need to create the following `nginx-proxy.env` file:
-
-```bash
 DEFAULT_LETSENCRYPT_EMAIL=
 ```
 
@@ -30,5 +23,5 @@ DEFAULT_LETSENCRYPT_EMAIL=
 TODO: If you split out the Nginx proxy (which you should) you'll need to add here about running that first.
 
 ```bash
-
+docker compose up -d
 ```
