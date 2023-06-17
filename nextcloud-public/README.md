@@ -8,6 +8,8 @@ You'll need to create the following `.env` file:
 
 ```bash
 NEXTCLOUD_HOST=
+NEXTCLOUD_ADMIN_USER=
+NEXTCLOUD_ADMIN_PASSWORD=
 
 MYSQL_PASSWORD=
 MYSQL_DATABASE=
