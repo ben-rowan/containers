@@ -1,8 +1,8 @@
 ---
 volumes:
-  nginx-certs:
-  nginx-vhost:
-  nginx-html:
+  certs:
+  vhost:
+  html:
   acme:
 
 services:
@@ -14,9 +14,9 @@ services:
       - "443:443"
     volumes:
       # Make these available for acme-companion
-      - nginx-certs:/etc/nginx/certs:ro
-      - nginx-vhost:/etc/nginx/vhost.d
-      - nginx-html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       # Nginx was complaining about this in the logs.
@@ -32,7 +32,7 @@ services:
     volumes_from:
       - nginx-proxy
     volumes:
-      - nginx-certs:/etc/nginx/certs:rw
+      - certs:/etc/nginx/certs:rw
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
