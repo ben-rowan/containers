@@ -1,6 +1,6 @@
 # nextcloud-public
 
-A Nextcloud container setup to run behind an Nginx proxy with LetsEncrypt certificate.
+A Nextcloud container setup to run behind an Nginx proxy with LetsEncrypt certificates.
 
 ## .env
 
@@ -18,7 +18,7 @@ LETSENCRYPT_EMAIL=
 
 ## Run
 
-Note: Before starting Nextcloud, you need to start an instance of nginx-proxy.
+> Note: Before starting Nextcloud, you need to start an instance of nginx-proxy.
 
 ```bash
 docker compose up -d

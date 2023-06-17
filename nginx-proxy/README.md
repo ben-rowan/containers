@@ -1,6 +1,6 @@
 # nginx-proxy
 
-An Nginx proxy container setup to handle SSL/TLS connects for proxied containers. Uses LetsEncrypt certs.
+An Nginx proxy container setup to handle SSL/TLS connections for proxied containers. Uses LetsEncrypt certs.
 
 ## .env
 
@@ -20,9 +20,11 @@ docker compose up -d
 
 In order to add a new proxied container you need to add the following to it's docker-compose.yml:
 
-Expose the port that Nginx should use:
+### expose
 
-Note: This can be ports `80` and/or `443` even though Nginx is binding to these on the host. This is because we're using a Docker Bridge network and not the hosts networking stack.
+Expose the port that Nginx should use when forwarding requests.
+
+> Note: This can be ports `80` and/or `443` even though Nginx is binding to these on the host. This is because we're using a Docker Bridge network and not the hosts networking stack.
 
 ```yaml
 services:
@@ -31,7 +33,7 @@ services:
       - <port>
 ```
 
-Set the required Nginx env values:
+### Nginx env
 
 ```yaml
 environment:
@@ -40,7 +42,7 @@ environment:
   - VIRTUAL_PORT=<port> # The same port you exposed above.
 ```
 
-Set the required LetsEncrypt env values:
+### LetsEncrypt env
 
 ```yaml
 environment:
@@ -49,9 +51,9 @@ environment:
   - LETSENCRYPT_EMAIL="your.email@email.com"
 ```
 
-Add the `nginx-proxy` network:
+### nginx-proxy Network
 
-Note: This only needs to be added to the application the proxy will be directly forwarding requests to. Your DB etc doesn't need to be able to speak to this network (unless it's being proxied...).
+> Note: This only needs to be added to the application the proxy will be directly forwarding requests too. Your database etc likely doesn't need to be able to speak to this network.
 
 ```yaml
 services:
@@ -64,7 +66,7 @@ networks:
     external: true
 ```
 
-Add a `depends_on` for the proxy so your service isn't started before the proxy is ready:
+### depends_on
 
 ```yaml
 services:
