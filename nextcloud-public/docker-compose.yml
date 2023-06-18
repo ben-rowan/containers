@@ -32,7 +32,6 @@ services:
       - nginx-proxy
     depends_on:
       - nextcloud-db
-      - nginx-proxy
     restart: unless-stopped
 
   nextcloud-db:
