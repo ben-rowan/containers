@@ -8,7 +8,6 @@ You'll need to create the following `.env` file:
 
 ```bash
 NEXTCLOUD_HOST=
-TRUSTED_DOMAIN=
 
 ADMIN_USER=
 ADMIN_PASSWORD=
